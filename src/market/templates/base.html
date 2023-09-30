@@ -33,8 +33,8 @@
             <li class="nav-item">
                 <a class="nav-link" href="/login">Login</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/register">Register</a>
+            <li class="nav-item {% if page == 'register' %}active{% endif %}">
+                <a class="nav-link" href="{{url_for('register')}}">Register</a>
             </li>
         </ul>
       </div>
@@ -56,7 +56,15 @@
    <style>
       body {
       background-color: #212121;
-      color: white
+      color: white;
+      height : 1000px;
+      }
+
+      img{
+        width : 150px;
+        height : 150px;
+        border-radius : 50%;
+        margin-top : 30px; 
       }
    </style>
 </html>
