@@ -2,7 +2,7 @@ from market import app,db
 from flask import render_template, redirect, url_for,flash
 from market.models import Item,User
 from market.forms import RegisterForm,LoginForm
-from flask_login import login_user
+from flask_login import login_user,logout_user,login_required
 
 
 @app.route('/')
@@ -11,6 +11,7 @@ def home_page():
     return render_template('home.html',page='home')
 
 @app.route('/market')
+@login_required
 def market_page():
     items = Item.query.all()
     return render_template('market.html',items=items,page='market')
@@ -24,6 +25,9 @@ def register():
                               password = form.password1.data)
         db.session.add(user_to_create)
         db.session.commit()
+
+        login_user(user_to_create)
+        flash(f"Account has been Successfully created ! You are logged in as user : {user_to_create.username}",category='success')
         return redirect(url_for('market_page'))
 
     # if there are no errors
@@ -52,3 +56,9 @@ def login_page():
 
 
     return render_template('login.html',page = 'login',form=form)
+
+@app.route('/logout',methods = ['GET','POST'])
+def logout_page():
+    logout_user()
+    flash("You have been Successfully logged out",category="info")
+    return redirect(url_for("home_page"))
