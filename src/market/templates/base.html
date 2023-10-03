@@ -14,7 +14,7 @@
    </head>
    <body>
     <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-      <a class="navbar-brand" href="#">Flask Market</a>
+      <a class="navbar-brand">Flask Market</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -34,7 +34,7 @@
           <li class="nav-item {% if page == 'login' %}active{% endif %}">
             <a class="nav-link" style = "color : lawngreen; font-weight : bold;">
               <i class='fas fa-coins' style="color : lawngreen"></i>
-              {{current_user.prettier_budget}} $
+              {{current_user.prettier_budget}} 
             </a>
          </li>
           <li class="nav-item {% if page == 'login' %}active{% endif %}">
